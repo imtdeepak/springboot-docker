@@ -44,3 +44,9 @@ Steps to push an Image to DTR
 4) Login to dtr.predix.io on terminal with `docker login dtr.predix.io`
 5) Push the image with `docker push dtr.predix.io/<sso>/<name-of-repo>`
 
+## Kubernetes/PCS
+
+1) Create a yaml file with the necessary specifications like in `example.yaml`
+2) Login to your dev cluster with `kubectl plugin pcs login <email> <namespace> <cluster>`
+3) Change directory `cd ~/.kube/plugins/pcsgo` and run `./go-cli deploy -m /path-to-yaml`
+4) Use `kubectl get pods` to check if your pod is there

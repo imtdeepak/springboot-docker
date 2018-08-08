@@ -1,0 +1,7 @@
+name: "micro-service-example-luca"
+image: "dtr.predix.io/212702649/micro-service-example"
+instances: "1"
+memory: "512M"
+cpu: ".1"
+port: "9002"
+namespace: "apm"
