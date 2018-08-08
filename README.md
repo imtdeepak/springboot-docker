@@ -4,6 +4,19 @@ This is documentation on how to use docker and dtr.predix.io to create and push 
 docker image to DockerHub. The example app simply lists the names of a few basketball players
 on a GET request.
 
+## Setup and Pre-requisites
+
+• Maven
+
+• Project Lombok
+
+• Docker
+
+• PCS and Kubernetes
+
+1) Clone the repository 
+2) Run `mvn clean install` from the project root directory
+
 ## Dockerfile
 
 The Dockerfile that I included in this repo simply gets the necessary dependencies in JDK8, exposes
