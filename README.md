@@ -52,7 +52,7 @@ Steps to push an Image to DTR
 
 1) Login to dtr.predix.io
 2) Create a repository ex: sso/micro-service-example
-3) Yag the local image with the name of the repository. The name of the repository is
+3) Tag the local image with the name of the repository. The name of the repository is
 `dtr.predix.io/<sso>/<name-of-repo>` - this is where you run the `make run` command.
 4) Login to dtr.predix.io on terminal with `docker login dtr.predix.io`
 5) Push the image with `docker push dtr.predix.io/<sso>/<name-of-repo>`
