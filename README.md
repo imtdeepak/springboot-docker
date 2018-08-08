@@ -44,6 +44,34 @@ Steps to push an Image to DTR
 4) Login to dtr.predix.io on terminal with `docker login dtr.predix.io`
 5) Push the image with `docker push dtr.predix.io/<sso>/<name-of-repo>`
 
+## PCS Onboarding
+
+Remove all Proxy configurations 
+```
+unset http_proxy
+unset https_proxy
+```
+
+1) Get access to DTR by filing ticket at https://build.ge.com/services/docker-registry/
+
+2) Install the following
+
+    • UAA client <= 4.1.0 - https://github.com/cloudfoundry/cf-uaac
+     
+    • kubectl - https://kubernetes.io/docs/tasks/tools/install-kubectl/ 
+
+    • cygwin [optional, if using windows] - https://www.cygwin.com/
+
+3) Using the CF1 Endpoint ([PCS Production]: https://master.system.pcs.aws-usw02-pr.ice.predix.io), run `kubectl config set-cluster "k8-pcs-cluster" --server=<PCS_API_Endpoint>`
+
+4) Go to https://github.devtools.predix.io/industrial-cloud-pcs/onboarding/releases
+
+5) Create directory ~/.kube/plugins/pcsgo
+
+6) Unzip the downloaded zip file `unzip pcs-plugin-darwin64.zip -d ~/.kube/plugins/pcsgo
+`
+7) Login to CF: `cf login -a https://api.system.aws-usw02-pr.ice.predix.io --sso`
+
 ## Kubernetes/PCS
 
 1) Create a yaml file with the necessary specifications like in `example.yaml`
