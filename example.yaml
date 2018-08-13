@@ -1,7 +1,11 @@
-name: "micro-service-example-luca"
-image: "dtr.predix.io/212702649/micro-service-example"
+name: "micro-service-example-deepak"
+image: "dtr.predix.io/212550544/micro-service-sample"
 instances: "1"
 memory: "512M"
 cpu: ".1"
 port: "8080"
 namespace: "apm"
+bind:
+  org: apmcontribution
+  space: pcs-aks
+  app: pcsConnectorApp
