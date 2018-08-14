@@ -19,6 +19,7 @@ public class RedisConfiguration {
     private @Value("${vcap.services.${redis_name:pcs-caching-service}.credentials.port}")     int    redisPort;
     private @Value("${vcap.services.${redis_name:pcs-caching-service}.credentials.password}") String redisPassword;
 
+
     @Bean
     JedisConnectionFactory jedisConnectionFactory() {
         logger.info("Redis config {} {}", redisHost, redisPort);

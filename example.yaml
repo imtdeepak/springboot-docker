@@ -9,3 +9,5 @@ bind:
   org: apmcontribution
   space: pcs-aks
   app: pcsConnectorApp
+env:
+  redis_name: pcs-caching-service

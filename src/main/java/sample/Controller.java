@@ -59,7 +59,7 @@ public class Controller {
         Object cachedValue = redisTemplate.opsForValue().get(pathVariable);
         KeyValuePair keyValuePair = new KeyValuePair();
         keyValuePair.setKey(pathVariable);
-        keyValuePair.setValue((String) cachedValue);
+        keyValuePair.setValue(cachedValue);
         return new ResponseEntity<Object>(keyValuePair, HttpStatus.OK);
     }
 

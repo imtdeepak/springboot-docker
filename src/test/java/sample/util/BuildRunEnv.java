@@ -9,7 +9,11 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.*;
+import javax.xml.transform.Result;
+import javax.xml.transform.Source;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.xpath.XPath;
@@ -30,14 +34,14 @@ public class BuildRunEnv {
     // For testing Local
     static String[] envFiles = {".env.local.pcs"};
 
-    static String ideaWorkspace = ".idea/workspace.xml";
-    static String patternString = "^export ([^=]+)=(\')?(.+)(\')?$";
-    static String[] xPathConfigs = {
+    static String   ideaWorkspace    = ".idea/workspace.xml";
+    static String   patternString    = "^export ([^=]+)=(\')?(.+)(\')?$";
+    static String[] xPathConfigs     = {
             "/project/component[@name='RunManager']/configuration[@type='JUnit']",
             "/project/component[@name='RunManager']/configuration[@type='SpringBootApplicationConfigurationType']",
             "/project/component[@name='RunManager']/configuration[@type='Application']"
     };
-    static String xPathEnvNodeName = "envs";
+    static String   xPathEnvNodeName = "envs";
 
     static HashMap<String, String> env;
 
@@ -55,7 +59,7 @@ public class BuildRunEnv {
         Pattern pattern = Pattern.compile(patternString);
         Matcher matcher;
         String key, value;
-        for (String fileName: envFiles) {
+        for (String fileName : envFiles) {
             FileReader fileReader = new FileReader(fileName);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String line;
@@ -83,7 +87,7 @@ public class BuildRunEnv {
         //env.forEach(k, v) ->
         Iterator it = env.entrySet().iterator();
         while (it.hasNext()) {
-            Map.Entry pair = (Map.Entry)it.next();
+            Map.Entry pair = (Map.Entry) it.next();
             Element envNode = (Element) document.createElement("env");
             envNode.setAttribute("name", pair.getKey().toString());
             envNode.setAttribute("value", pair.getValue().toString());
@@ -104,19 +108,19 @@ public class BuildRunEnv {
         Document doc = readIdeaWorkspace();
 
         XPath xPath = XPathFactory.newInstance().newXPath();
-        for (String xPathConfig: xPathConfigs) {
+        for (String xPathConfig : xPathConfigs) {
             NodeList configNodes = (NodeList) xPath.compile(xPathConfig).evaluate(doc, XPathConstants.NODESET);
 
-            for (int i=0; i < configNodes.getLength(); i++) {
+            for (int i = 0; i < configNodes.getLength(); i++) {
                 Element configNode = (Element) configNodes.item(i);
                 if (configNode != null && configNode.getNodeType() == Node.ELEMENT_NODE) {
                     Node oldEnvsNode = (Node) xPath.compile(xPathEnvNodeName).evaluate(configNode, XPathConstants.NODE);
                     Node newEnvsNode = buildEnvsNode(doc);
 
-                    if(oldEnvsNode != null) {
+                    if (oldEnvsNode != null) {
                         configNode.removeChild(oldEnvsNode);
                     }
-                    if(newEnvsNode != null) {
+                    if (newEnvsNode != null) {
                         configNode.appendChild(newEnvsNode);
                     }
                 }
