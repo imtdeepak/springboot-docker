@@ -1,8 +1,6 @@
 package sample;
 
-import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
@@ -14,7 +12,7 @@ public class KeyValuePair {
     private String key;
     private Object value;
 
-    public KeyValuePair(){
+    public KeyValuePair() {
 
     }
 }
