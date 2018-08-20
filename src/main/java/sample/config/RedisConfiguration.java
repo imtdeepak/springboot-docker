@@ -15,9 +15,9 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 @Configuration
 public class RedisConfiguration {
     private static Logger logger = LoggerFactory.getLogger(RedisConfiguration.class);
-    private @Value("${vcap.services.${redis_name:pcs-caching-service}.credentials.host}")     String redisHost;
-    private @Value("${vcap.services.${redis_name:pcs-caching-service}.credentials.port}")     int    redisPort;
-    private @Value("${vcap.services.${redis_name:pcs-caching-service}.credentials.password}") String redisPassword;
+    private @Value("${REDIS_SERVICE_HOST}")     String redisHost;
+    private @Value("${REDIS_SERVICE_PORT}")     int    redisPort;
+    private @Value("${REDIS_SERVICE_PASSWORD:}") String redisPassword;
 
 
     @Bean

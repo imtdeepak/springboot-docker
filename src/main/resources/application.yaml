@@ -1,0 +1,5 @@
+VCAP_SERVICES: {"postgres-2.0":[{"credentials":{"allocated_storage":400,"database":"postgres","encryption_at_rest":false,"hostname":"db-2a1d5b7d-3831-484f-87d0-5c0b50699341.c7uxaqxgfov3.us-west-2.rds.amazonaws.com","maintenance_window":"mon:10:06-mon:10:36","password":"ks8wcvkc14q80b9e1oivmi1na","port":5432,"uri":"postgres://u58lnikyz4l7qw2y:ks8wcvkc14q80b9e1oivmi1na@db-2a1d5b7d-3831-484f-87d0-5c0b50699341.c7uxaqxgfov3.us-west-2.rds.amazonaws.com:5432/postgres","username":"u58lnikyz4l7qw2y","uuid":"2a1d5b7d-3831-484f-87d0-5c0b50699341"},"label":"postgres-2.0","name":"k8-pcs-postgres","plan":"dedicated-40.1","provider":null,"syslog_drain_url":null,"tags":["database","postgres","postgresql"],"volume_mounts":[]}],"predix-cache":[{"credentials":{"host":"localhost","password":"foobared","port":6379},"label":"predix-cache","name":"pcs-caching-service","plan":"Shared-R30","provider":null,"syslog_drain_url":null,"tags":["redis"],"volume_mounts":[]}]}
+redis_name: pcs-caching-service
+REDIS_SERVICE_HOST: localhost
+REDIS_SERVICE_PORT: 6379
+REDIS_SERVICE_PASSWORD: foobared
