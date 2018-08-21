@@ -3,3 +3,14 @@ redis_name: pcs-caching-service
 REDIS_SERVICE_HOST: localhost
 REDIS_SERVICE_PORT: 6379
 REDIS_SERVICE_PASSWORD: foobared
+#spring:
+#  jpa:
+#    generate-ddl: true
+#jpa:
+#  datasource:
+#    initialize: true
+logging:
+  level:
+    org.springframework.web: DEBUG
+    guru.springframework.controllers: DEBUG
+    org.springframework: DEBUG

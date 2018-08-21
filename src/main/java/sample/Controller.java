@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import sample.entities.Customer;
+import sample.repositories.CustomerRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +29,9 @@ public class Controller {
 
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;
+
+    @Autowired
+    private CustomerRepository customerRepository;
 
     @GetMapping("/get")
     public ResponseEntity<?> getNames() {
@@ -70,5 +75,23 @@ public class Controller {
         redisTemplate.opsForValue().set(keyValuePair.getKey(), keyValuePair.getValue());
         return new ResponseEntity<Object>(HttpStatus.OK);
     }
+
+    @RequestMapping(value = {"/customer/{pathVariable}"}, method = RequestMethod.GET)
+    public ResponseEntity<?> getCustomer(@PathVariable String pathVariable) {
+        Customer customer = customerRepository.findOne(Long.parseLong(pathVariable));
+        return new ResponseEntity<Object>(customer, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = {"/customer"}, method = RequestMethod.GET)
+    public ResponseEntity<?> getAllCustomer() {
+        Iterable<Customer> customers = customerRepository.findAll();
+        return new ResponseEntity<Object>(customers, HttpStatus.OK);
+    }
+    @RequestMapping(value = {"/customer"}, method = RequestMethod.POST)
+    public ResponseEntity<?> saveCustomer(@RequestBody(required = true) Customer customer) {
+        customer = customerRepository.save(customer);
+        return new ResponseEntity<Object>(customer, HttpStatus.OK);
+    }
+
 }
 

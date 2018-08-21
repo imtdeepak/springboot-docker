@@ -5,9 +5,5 @@ memory: "512M"
 cpu: ".1"
 port: "8080"
 namespace: "apm"
-bind:
-  org: apmcontribution
-  space: pcs-aks
-  app: pcsConnectorApp
 env:
-  redis_name: pcs-caching-service
+  redis_name: redis

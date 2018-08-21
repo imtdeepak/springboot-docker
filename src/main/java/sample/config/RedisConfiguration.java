@@ -15,10 +15,13 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 @Configuration
 public class RedisConfiguration {
     private static Logger logger = LoggerFactory.getLogger(RedisConfiguration.class);
-    private @Value("${REDIS_SERVICE_HOST}")     String redisHost;
-    private @Value("${REDIS_SERVICE_PORT}")     int    redisPort;
+    /**
+     * REDIS_SERVICE_HOST and REDIS_SERVICE_PORT are provided as part of environment variables by Kubernetes
+     * as both are in same cluster.
+     */
+    private @Value("${REDIS_SERVICE_HOST}")      String redisHost;
+    private @Value("${REDIS_SERVICE_PORT}")      int    redisPort;
     private @Value("${REDIS_SERVICE_PASSWORD:}") String redisPassword;
-
 
     @Bean
     JedisConnectionFactory jedisConnectionFactory() {

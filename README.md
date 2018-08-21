@@ -10,6 +10,8 @@ on a GET request.
 
 • Project Lombok
 
+• Intellij-idea if developing/extending this project 
+
 • Docker
 
 • PCS and Kubernetes
@@ -36,7 +38,7 @@ This Makefile contains several targets needed to push the image to DTR.
 
 __build__
 
-use the command `make build` to build the Docker image.
+use the command `make build` to build the Docker image. (Please do mvn clean install for all changes to affect else it will us old jar in target)
 
 __run__
 
@@ -59,17 +61,12 @@ Steps to push an Image to DTR
 
 ## PCS Onboarding
 
-Remove all Proxy configurations 
-```
-unset http_proxy
-unset https_proxy
-```
 
 1) Get access to DTR by filing ticket at https://build.ge.com/services/docker-registry/
 
 2) Install the following
 
-    • UAA client <= 4.1.0 - https://github.com/cloudfoundry/cf-uaac
+    • UAA client(optional) <= 4.1.0 - https://github.com/cloudfoundry/cf-uaac
      
     • kubectl - https://kubernetes.io/docs/tasks/tools/install-kubectl/ 
 
@@ -89,5 +86,5 @@ unset https_proxy
 
 1) Create a yaml file with the necessary specifications like in `example.yaml`
 2) Login to your dev cluster with `kubectl plugin pcs login <email> <namespace> <cluster>`
-3) Change directory `cd ~/.kube/plugins/pcsgo` and run `./go-cli deploy -m /path-to-yaml`
+3) Change directory `cd ~/.kube/plugins/pcsgo`, copy the yaml file in example folder `~/.kube/plugins/pcsgo/example` and run `./go-cli deploy -m /path-to-yaml`
 4) Use `kubectl get pods` to check if your pod is there
