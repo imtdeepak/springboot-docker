@@ -1,0 +1,26 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    apm.service: redis
+  name: redis
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        apm.service: redis
+    spec:
+      containers:
+      - image: redis:alpine
+        name: redis
+        resources:
+          requests:
+            cpu: 1
+            memory: 512M
+        ports:
+        - name: redis-port
+          containerPort: 6379    
+      restartPolicy: Always
+      imagePullSecrets:
+      - name: dtr-predix-secret

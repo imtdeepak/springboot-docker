@@ -1,0 +1,43 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    apm.service: pg
+  name: pg
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        apm.service: pg
+    spec:
+      containers:
+      - image: postgres:alpine
+        name: pg
+        env:
+        - name: "POSTGRES_PASSWORD"
+          value: "password"
+        - name: "POSTGRES_USER"
+          value: "root"
+        resources:
+          requests:
+            cpu: 1
+            memory: 512M
+        ports:
+        - name: pg-port
+          containerPort: 5432    
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    apm.service: pg
+  name: pg
+spec:
+  ports:
+  - name: pg-port
+    port: 5432
+    targetPort: 5432
+  selector:
+    apm.service: pg
