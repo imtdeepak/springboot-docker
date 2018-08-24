@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: micro-service-example-deepak
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: micro-service-example-deepak
+      tier: runner
+  template:
+    metadata:
+      labels:
+        app: micro-service-example-deepak
+        tier: runner
+    spec:
+        containers:
+        - name: pcs-runner
+          image: dtr.predix.io/212550544/micro-service-sample:versionpg
+          resources:
+            requests:
+              cpu: ".1"
+              memory: 512M
+          env:
+          - name: DATABASE_HOST
+            valueFrom:
+             configMapKeyRef:
+                name: pg-config
+                key: DATABASE_HOST
+          - name: DATABASE_PORT
+            valueFrom:
+             configMapKeyRef:
+                name: pg-config
+                key: DATABASE_PORT
+          - name: DATABASE_USER
+            valueFrom:
+             configMapKeyRef:
+                name: pg-config
+                key: DATABASE_USER
+          - name: DATABASE_PASSWORD
+            valueFrom:
+             configMapKeyRef:
+                name: pg-config
+                key: DATABASE_PASSWORD
+          - name: DATABASE_NAME
+            valueFrom:
+             configMapKeyRef:
+                name: pg-config
+                key: DATABASE_NAME
+          - name: GET_HOSTS_FROM
+            value: dns
+          - name: PORT
+            value: "8080"
+          ports:
+          - name: pcs-http-port
+            containerPort: 8080

@@ -33,7 +33,7 @@ public class Controller {
     @Autowired
     private CustomerRepository customerRepository;
 
-    @GetMapping("/get")
+    @GetMapping("/name")
     public ResponseEntity<?> getNames() {
         List<String> names = new ArrayList<String>();
         names.add("Stephen Curry");

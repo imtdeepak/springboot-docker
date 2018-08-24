@@ -31,7 +31,6 @@ public class DatabaseConfig {
 
     private @Value("${DATABASE_NAME}") String databaseName;
 
-    private @Value("${DRIVER_CLASS_NAME:org.postgresql.Driver}") String driverClassName;
 
     @Bean
     DataSource dataSource() {
