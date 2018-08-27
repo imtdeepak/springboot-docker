@@ -6,7 +6,9 @@ cpu: ".1"
 port: "8080"
 namespace: "apm"
 env:
-  redis_name: redis
+  REDIS_SERVICE_HOST: redis
+  REDIS_SERVICE_PORT: 6379
+  REDIS_SERVICE_PASSWORD:
   DATABASE_HOST: pg
   DATABASE_PORT: 5432
   DATABASE_USER: root

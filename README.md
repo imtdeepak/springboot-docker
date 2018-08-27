@@ -88,3 +88,14 @@ Steps to push an Image to DTR
 2) Login to your dev cluster with `kubectl plugin pcs login <email> <namespace> <cluster>`
 3) Change directory `cd ~/.kube/plugins/pcsgo`, copy the yaml file in example folder `~/.kube/plugins/pcsgo/example` and run `./go-cli deploy -m /path-to-yaml`
 4) Use `kubectl get pods` to check if your pod is there
+
+
+## Deploying Postgres
+```
+$ kubectl apply -f postgres.yaml
+```
+
+## Deploying Redis 
+```
+ $ kubectl apply -f redis.yaml
+ ```

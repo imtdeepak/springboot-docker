@@ -24,3 +24,17 @@ spec:
       restartPolicy: Always
       imagePullSecrets:
       - name: dtr-predix-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    apm.service: redis
+  name: redis
+spec:
+  ports:
+  - name: redis-port
+    port: 6379
+    targetPort: 6379
+  selector:
+    apm.service: redis
