@@ -1,5 +1,5 @@
 name: "micro-service-example-deepak"
-image: "dtr.predix.io/212550544/micro-service-sample:versionpg"
+image: "dtr.predix.io/212550544/micro-service-sample:versionpg1"
 instances: "1"
 memory: "512M"
 cpu: ".1"

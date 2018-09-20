@@ -11,6 +11,6 @@ REDIS_SERVICE_PASSWORD: foobared
 #    initialize: true
 logging:
   level:
-    org.springframework.web: DEBUG
-    guru.springframework.controllers: DEBUG
-    org.springframework: DEBUG
+    org.springframework.web: ERROR
+    guru.springframework.controllers: ERROR
+    org.springframework: ERROR
