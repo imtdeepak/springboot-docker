@@ -99,3 +99,10 @@ $ kubectl apply -f postgres.yaml
 ```
  $ kubectl apply -f redis.yaml
  ```
+ 
+ # Locally running everything in docker
+ We are going to use docker compose which will start redis, postgres and the docker image for the app
+  Check docker-compose.yml file for more details.
+ ```
+ $ docker-compose up
+ ```

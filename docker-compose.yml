@@ -1,0 +1,31 @@
+version: '2'
+services:
+  app:
+    image: micro-service-example
+    ports:
+    - "8080:8080"
+    environment:
+      - REDIS_SERVICE_HOST=myredis
+      - REDIS_SERVICE_PORT=6379
+      - REDIS_SERVICE_PASSWORD=redisPassword
+      - DATABASE_HOST=mypostgres
+      - DATABASE_PORT=5432
+      - DATABASE_USER=mypostgres
+      - DATABASE_PASSWORD=password
+      - DATABASE_NAME=mydb
+    depends_on:
+    - mypostgres
+    - myredis
+  mypostgres:
+    image: postgres:alpine
+    ports:
+     - "5432:5432"
+    environment:
+     - POSTGRES_PASSWORD=password
+     - POSTGRES_USER=mypostgres
+     - POSTGRES_DB=mydb
+  myredis:
+    image: redis:alpine
+    command: redis-server --requirepass redisPassword
+    ports:
+     - "6379:6379"
