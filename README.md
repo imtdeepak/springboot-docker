@@ -105,4 +105,6 @@ $ kubectl apply -f postgres.yaml
   Check docker-compose.yml file for more details.
  ```
  $ docker-compose up
+
+ 
  ```
